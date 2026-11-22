@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090713">
+<title>Only For You ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+ background:radial-gradient(ellipse at top,#49234f,#090713 70%);
+ color:#fff;
+ font-family:Georgia,serif;
+ min-height:100vh;
+ overflow-x:hidden;
+ text-align:center;
+}
+
+#stars{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ overflow:hidden;
+ z-index:0;
+}
+
+.star{
+ position:absolute;
+ background:white;
+ border-radius:50%;
+ animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+ to{opacity:.1;transform:scale(.4)}
+}
+
+.moon{
+ position:fixed;
+ top:9%;
+ right:10%;
+ width:65px;
+ height:65px;
+ background:#fff0d7;
+ border-radius:50%;
+ box-shadow:0 0 40px #ffd9c477;
+}
+
+main{
+ position:relative;
+ z-index:1;
+ width:min(720px,92%);
+ margin:auto;
+ padding:45px 0;
+}
+
+.card{
+ background:#ffffff0b;
+ border:1px solid #ffffff25;
+ border-radius:28px;
+ padding:clamp(22px,5vw,42px);
+ backdrop-filter:blur(15px);
+ box-shadow:0 0 65px #ff5d9e22;
+}
+
+h1{
+ font-size:clamp(42px,10vw,72px);
+ color:#ffb4d2;
+ margin:20px 0;
+ text-shadow:0 0 30px #ff5d9e77;
+}
+
+h2{
+ color:#ffc4df;
+ font-size:27px;
+ margin-bottom:18px;
+}
+
+h3{
+ color:#ffb4d2;
+ margin:10px 0;
+}
+
+p{
+ font:15px/1.9 Arial,sans-serif;
+ color:#e8d9e8;
+ margin:12px 0;
+}
+
+.heart{
+ font-size:48px;
+ color:#ff91bd;
+ animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+ 50%{transform:scale(1.2)}
+}
+
+button{
+ background:linear-gradient(120deg,#ff659c,#9861c9);
+ color:white;
+ border:1px solid #ffffff25;
+ padding:14px 24px;
+ border-radius:50px;
+ cursor:pointer;
+ margin:17px 5px;
+ font-weight:bold;
+ transition:.3s;
+ box-shadow:0 0 25px #ff5d9e44;
+}
+
+button:hover{
+ transform:translateY(-3px);
+ box-shadow:0 0 30px #ff5d9e88;
+}
+
+.section{
+ padding:30px 0;
+ margin-top:25px;
+ border-top:1px solid #ffffff20;
+}
+
+.hidden{display:none!important}
+
+.reveal{
+ animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+ from{opacity:0;transform:translateY(25px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+/* ENVELOPE */
+
+.envelope{
+ width:230px;
+ height:145px;
+ margin:30px auto;
+ background:#a94e86;
+ border-radius:10px;
+ position:relative;
+ display:grid;
+ place-items:center;
+ cursor:pointer;
+ font-size:40px;
+ transition:.5s;
+ box-shadow:0 10px 35px #0006;
+}
+
+.envelope:before{
+ content:"";
+ position:absolute;
+ top:0;
+ width:100%;
+ height:75px;
+ background:#e18ab6;
+ clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+.envelope span{z-index:2}
+
+/* SHAYARI */
+
+.poetry{
+ font-size:clamp(17px,4vw,21px);
+ line-height:2.1;
+ color:#ffe0ef;
+ font-style:italic;
+}
+
+.line{
+ opacity:0;
+ transform:translateY(10px);
+ transition:1s;
+}
+
+.line.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+/* INTERACTIVE CARDS */
+
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-top:20px;
+}
+
+.tile{
+ padding:20px 12px;
+ background:#ffffff0c;
+ border:1px solid #ffffff20;
+ border-radius:16px;
+ cursor:pointer;
+ transition:.3s;
+}
+
+.tile:hover{
+ transform:translateY(-4px);
+ background:#ff91bd16;
+}
+
+.more{
+ display:none;
+ font:13px/1.8 Arial;
+ color:#f4dce9;
+}
+
+.tile.active .more{display:block}
+
+/* PROMISES */
+
+.promise{
+ padding:16px;
+ margin:12px 0;
+ background:#ffffff0c;
+ border:1px solid #ffffff15;
+ border-radius:14px;
+ text-align:left;
+ font:14px/1.7 Arial;
+}
+
+/* ROSES */
+
+.rose-garden{
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:20px;
+ margin:25px 0;
+}
+
+.rose-item{
+ font-size:42px;
+ cursor:pointer;
+ transition:.4s;
+}
+
+.rose-item:hover{
+ transform:scale(1.4) rotate(15deg);
+}
+
+.rose-message{
+ color:#ffc4df;
+ font:14px/1.8 Arial;
+}
+
+/* GIFT */
+
+.gift{
+ font-size:75px;
+ cursor:pointer;
+ transition:.4s;
+}
+
+.gift:hover{
+ transform:scale(1.2) rotate(8deg);
+}
+
+.gift-message{
+ padding:22px;
+ background:#ffffff10;
+ border-radius:18px;
+ margin-top:20px;
+ border:1px solid #ffffff20;
+}
+
+/* TYPEWRITER */
+
+.typewriter{
+ color:#ffb4d2;
+ font-size:25px;
+ min-height:60px;
+ text-shadow:0 0 15px #ff5d9e;
+}
+
+/* PROGRESS */
+
+.progress-track{
+ height:6px;
+ background:#ffffff20;
+ border-radius:10px;
+ overflow:hidden;
+ margin:20px 0;
+}
+
+.progress-fill{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,#ff659c,#b98bff);
+ transition:width 1.5s;
+}
+
+/* FINAL HEART */
+
+.final-heart{
+ font-size:95px;
+ color:#ff77a9;
+ cursor:pointer;
+ animation:heartbeat 1.5s infinite;
+ filter:drop-shadow(0 0 25px #ff5d9e);
+}
+
+@keyframes heartbeat{
+ 50%{transform:scale(1.15)}
+}
+
+/* FALLING HEARTS */
+
+.falling-heart{
+ position:fixed;
+ top:-30px;
+ z-index:10;
+ pointer-events:none;
+ animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+ to{
+  transform:translateY(110vh) rotate(360deg);
+  opacity:0;
+ }
+}
+
+footer{
+ color:#a58ba9;
+ font:11px Arial;
+ margin-top:30px;
+ letter-spacing:1px;
+}
+
+@media(max-width:480px){
+ .grid{grid-template-columns:1fr}
+ .moon{width:45px;height:45px}
+ .final-heart{font-size:75px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+<div class="moon"></div>
+
+<main>
+<div class="card">
+
+<div class="heart">♡</div>
+
+<p style="letter-spacing:4px;color:#ffb4d2">
+A LITTLE SOMETHING FOR YOU
+</p>
+
+<h1>I'm Sorry ❤️</h1>
+
+<div class="typewriter" id="typing"></div>
+
+<p>
+Kuch baatein dil mein reh jaati hain,<br>
+aaj wahi baatein tumhare naam.
+</p>
+
+<div class="envelope" id="envelope">
+<span>💌</span>
+</div>
+
+<p>Tap the envelope to open</p>
+
+<button onclick="openLetter()">Open My Letter ❤️</button>
+
+<div id="content" class="hidden">
+
+<!-- APOLOGY -->
+
+<div class="section reveal">
+<h2>Dil se ek baat...</h2>
+
+<p>
+Mujhe pata hai ki mere gusse aur mere
+bolne ke tareeke se tumhe takleef hui hai.
+
+Main apni galti ka koi bahana nahi banaunga.
+Tumhari feelings mere liye important hain.
+
+Tumhare aansuon ko main chhoti baat nahi samajhta.
+Mujhe apne behaviour ko badalna hai.
+
+Main chahta hoon ki tum mere saath
+safe, respected aur khush mehsoos karo.
+
+Sirf sorry bolna kaafi nahi.
+Mujhe apne actions se badlav dikhana hai.
+</p>
+</div>
+
+<!-- SHAYARI -->
+
+<div class="section">
+<h2>Ek Shayari 🌙</h2>
+
+<div class="poetry" id="poetry">
+<div class="line">Na chaand ki khwahish, na sitaaron ki fariyaad hai,</div>
+<div class="line">Bas tere chehre par muskaan rahe, meri itni si muraad hai.</div>
+<div class="line">Galti meri hai toh usse maan kar sudharna chahta hoon,</div>
+<div class="line">Ab lafzon se nahi, apne badlav se tujhe yakeen dilana chahta hoon. ❤️</div>
+</div>
+
+<button onclick="showPoetry()">Reveal Shayari ✨</button>
+</div>
+
+<!-- CARDS -->
+
+<div class="section">
+<h2>Kuch baatein tumhare liye 💗</h2>
+
+<div class="grid">
+
+<div class="tile" onclick="this.classList.toggle('active')">
+🌷
+<h3>Tumhari feelings</h3>
+<div class="more">
+Main tumhari baat dhyaan se sununga
+aur tumhari feelings ko samajhne ki koshish karunga.
+</div>
+</div>
+
+<div class="tile" onclick="this.classList.toggle('active')">
+🕊️
+<h3>Tumhara sukoon</h3>
+<div class="more">
+Tumhe mere saath izzat aur sukoon milna chahiye.
+</div>
+</div>
+
+<div class="tile" onclick="this.classList.toggle('active')">
+🤍
+<h3>Respect</h3>
+<div class="more">
+Narazgi mein bhi tumse respect se baat karunga.
+</div>
+</div>
+
+<div class="tile" onclick="this.classList.toggle('active')">
+🌱
+<h3>Badlav</h3>
+<div class="more">
+Main apni galtiyon ko accept karke
+un par sach mein kaam karunga.
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- PROMISES -->
+
+<div class="section">
+<h2>Mere 5 Vaade ❤️</h2>
+
+<div class="promise">🌸 Tumhari baat poori sununga.</div>
+<div class="promise">🕊️ Gusse mein break lunga.</div>
+<div class="promise">💗 Chillana aur hurtful words avoid karunga.</div>
+<div class="promise">🌷 Apni galti ka blame tum par nahi daalunga.</div>
+<div class="promise">✨ Apne actions se badlav dikhaunga.</div>
+</div>
+
+<!-- ROSE GARDEN -->
+
+<div class="section">
+<h2>A Little Garden For You 🌹</h2>
+
+<p>Har flower par click karo.</p>
+
+<div class="rose-garden">
+<span class="rose-item" onclick="roseMessage(0)">🌹</span>
+<span class="rose-item" onclick="roseMessage(1)">🌷</span>
+<span class="rose-item" onclick="roseMessage(2)">🌸</span>
+<span class="rose-item" onclick="roseMessage(3)">💐</span>
+</div>
+
+<div class="rose-message" id="roseMessage">
+Choose a flower ❤️
+</div>
+</div>
+
+<!-- PROGRESS -->
+
+<div class="section">
+<h2>My Journey To Better 🌱</h2>
+
+<p>
+Badlav ek process hai,
+sirf ek din ka promise nahi.
+</p>
+
+<div class="progress-track">
+<div class="progress-fill" id="progress"></div>
+</div>
+
+<p>Apne behaviour par kaam aaj se shuru.</p>
+</div>
+
+<!-- GIFT -->
+
+<div class="section">
+<h2>Ek Surprise 🎁</h2>
+
+<div class="gift" onclick="openGift()">🎁</div>
+
+<div id="giftMessage" class="gift-message hidden">
+<div class="heart">♡</div>
+
+<p>
+Is gift mein koi mehengi cheez nahi hai.
+
+Bas ek sachcha iraada hai:
+Tumhari feelings ki respect karna,
+tumhe samajhna aur apne gusse par kaam karna. ❤️
+</p>
+</div>
+</div>
+
+<!-- MUSIC -->
+
+<div class="section">
+<h2>Soft Music 🎵</h2>
+
+<button onclick="toggleMusic()" id="musicButton">
+♫ Music Off
+</button>
+
+<p>Optional: apni music.mp3 file isi folder mein rakhna.</p>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<!-- FINAL SURPRISE -->
+
+<div class="section">
+<h2>One Last Surprise 💗</h2>
+
+<div class="final-heart" onclick="finalSurprise()">♥</div>
+
+<p>Tap the heart</p>
+
+<div id="finalMessage" class="hidden">
+<h2> You Deserve Kindness ❤️</h2>
+
+<p>
+Tumhari feelings matter karti hain.
+Main apni galtiyon ko samajhkar
+behtar insaan banne ki koshish karunga.
+
+Tumhe maaf karne ki jaldi nahi.
+Main tumhari space ki respect karunga.
+</p>
+</div>
+</div>
+
+<div class="section">
+<h2>Aakhri baat...</h2>
+
+<p>
+Tum mere liye important ho.
+
+Lekin tumhari khushi aur tumhara sukoon
+bhi utna hi important hai.
+
+Meri sorry ka saboot
+mere badle hue actions honge.
+</p>
+
+<div class="heart">♡</div>
+
+<p style="color:#ffb4d2">
+With a sincere apology ❤️
+</p>
+</div>
+
+</div>
+</div>
+
+<footer>
+MADE WITH HONESTY · JUST FOR YOU ❤️
+</footer>
+
+</main>
+
+<script>
+
+// STAR BACKGROUND
+
+const stars=document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+ let star=document.createElement("div");
+ star.className="star";
+
+ let size=Math.random()*3+1;
+
+ star.style.width=size+"px";
+ star.style.height=size+"px";
+ star.style.left=Math.random()*100+"%";
+ star.style.top=Math.random()*100+"%";
+ star.style.animationDelay=Math.random()*4+"s";
+
+ stars.appendChild(star);
+}
+
+
+// TYPEWRITER
+
+const words=[
+ "I am truly sorry...",
+ "Your feelings matter...",
+ "I want to become better...",
+ "You deserve respect and kindness ❤️"
+];
+
+let wordIndex=0;
+let charIndex=0;
+
+function typeWords(){
+ const el=document.getElementById("typing");
+
+ if(charIndex<words[wordIndex].length){
+  el.textContent+=words[wordIndex].charAt(charIndex);
+  charIndex++;
+  setTimeout(typeWords,75);
+ }else{
+  setTimeout(()=>{
+   el.textContent="";
+   charIndex=0;
+   wordIndex=(wordIndex+1)%words.length;
+   typeWords();
+  },1800);
+ }
+}
+
+typeWords();
+
+
+// LETTER OPENING
+
+function openLetter(){
+ const content=document.getElementById("content");
+
+ content.classList.remove("hidden");
+ content.classList.add("reveal");
+
+ document.getElementById("envelope").style.transform="scale(.8)";
+
+ document.getElementById("progress").style.width="100%";
+
+ content.scrollIntoView({
+  behavior:"smooth",
+  block:"start"
+ });
+}
+
+
+// SHAYARI REVEAL
+
+let poetryShown=false;
+
+function showPoetry(){
+ if(poetryShown)return;
+
+ poetryShown=true;
+
+ const lines=document.querySelectorAll(".line");
+
+ lines.forEach((line,index)=>{
+  setTimeout(()=>{
+   line.classList.add("show");
+  },index*1000);
+ });
+}
+
+
+// ROSE GARDEN
+
+function roseMessage(index){
+
+ const messages=[
+  "Tumhari muskaan important hai. 🌹",
+  "Tumhari feelings ki respect karunga. 🌷",
+  "Tumhari baat dhyaan se sununga. 🌸",
+  "Tumhare saath kindness se pesh aaunga. 💐"
+ ];
+
+ document.getElementById("roseMessage").textContent=
+ messages[index];
+}
+
+
+// GIFT OPENING
+
+function openGift(){
+
+ document.getElementById("giftMessage")
+ .classList.remove("hidden");
+
+}
+
+
+// FALLING HEARTS
+
+function fallingHeart(){
+
+ const heart=document.createElement("div");
+
+ heart.className="falling-heart";
+
+ heart.textContent=["♡","♥","💗"][
+  Math.floor(Math.random()*3)
+ ];
+
+ heart.style.left=Math.random()*100+"vw";
+
+ heart.style.fontSize=
+ (15+Math.random()*20)+"px";
+
+ document.body.appendChild(heart);
+
+ setTimeout(()=>{
+  heart.remove();
+ },5000);
+}
+
+
+// FINAL SURPRISE
+
+function finalSurprise(){
+
+ document.getElementById("finalMessage")
+ .classList.remove("hidden");
+
+ for(let i=0;i<18;i++){
+  setTimeout(fallingHeart,i*100);
+ }
+
+}
+
+
+// MUSIC CONTROL
+
+function toggleMusic(){
+
+ const music=document.getElementById("bgMusic");
+ const button=document.getElementById("musicButton");
+
+ if(music.paused){
+
+  music.play().then(()=>{
+   button.textContent="♫ Music On";
+  }).catch(()=>{
+   button.textContent="Check music.mp3";
+  });
+
+ }else{
+
+  music.pause();
+  button.textContent="♫ Music Off";
+
+ }
+
+}
+
+</script>
+
+</body>
+</html>
